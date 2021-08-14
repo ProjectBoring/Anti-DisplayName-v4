@@ -46,22 +46,17 @@ local GetPlrInfo = function(userId)
     end
 end
 
-local GetPlrFromName = function(name)
-    if name and type(name) == 'string' then
-        local Player = false;
-        for _, v in next, game:GetService('Players'):GetPlayers() do
-            coroutine.wrap(function()
-                if v.DisplayName:lower() == name:lower() or v.Name:lower() == name:lower() then
-                    Player = v
-                end
-            end)()
-        end
-        return Player
-    end
-end
-
 local PlayersStuff = FindChildByOrder(game:GetService('CoreGui'), {'PlayerList', 'PlayerListMaster', 'OffsetFrame', 'PlayerScrollList', 'SizeOffsetFrame', 'ScrollingFrameContainer', 'ScrollingFrameClippingFrame', 'ScollingFrame', 'OffsetUndoFrame'}, true)
-if PlayersStuff then
+if PlayersStuff and typeof(PlayersStuff) == 'Instance' and PlayersStuff:IsA('Frame') then
+    PlayersStuff.ChildAdded:Connect(function(v)
+        if v.Name:match('p_') and GetPlrInfo(v.Name:gsub('p_', '')) and FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}) then
+            local PlrInfo = GetPlrInfo(v.Name:gsub('p_', ''));
+            local PlayerNameLabel = FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}, true)
+            if not game:GetService('Players'):FindFirstChild(PlrInfo[1].DisplayName) and PlrInfo[1].Username ~= LP.Name and ApplyLeaderboardDisplayname then
+                PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
+            end
+        end
+    end)
     for _, v in next, PlayersStuff:GetChildren() do
         coroutine.wrap(function()
             if v.Name:match('p_') and GetPlrInfo(v.Name:gsub('p_', '')) and FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}) then
