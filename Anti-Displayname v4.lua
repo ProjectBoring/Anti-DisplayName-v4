@@ -1,4 +1,3 @@
-print('Anti-Displayname v4 updated! (8:27 PM 8/14/21), will remove this message in 2 hours. (10:27 pm)')
 local Settings = {
     ['ApplyLeaderboardDisplayname'] = true, -- Toggle whether to change leaderboard name.
     ['FriendIdentifier'] = '✓', -- What shows up next to your friend(s) name.
