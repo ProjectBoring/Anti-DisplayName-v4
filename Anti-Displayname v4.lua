@@ -265,7 +265,7 @@ elseif getrenv()['Anti-DisplaynameRunning'] then
   local LP = game:GetService('Players').LocalPlayer
    
   if (isfolder('Anti-Displayname (v4) Settings') and isfile('Anti-Displayname (v4) Settings/Settings.json')) then
-      writefile('Anti-Displayname (v4) Settings/Settings.json', game:GetService('HttpService'):JSONEncode(Settings))
+      writefile('Anti-Displayname (v4) Settings/Settings.json', game:GetService('HttpService'):JSONEncode(getrenv()['Anti-DisplayNameSettings']))
       local Data = game:GetService('HttpService'):JSONDecode(readfile('Anti-Displayname (v4) Settings/Settings.json'))
       local PlayersStuff = FindChildByOrder(game:GetService('CoreGui'), {'PlayerList', 'PlayerListMaster', 'OffsetFrame', 'PlayerScrollList', 'SizeOffsetFrame', 'ScrollingFrameContainer', 'ScrollingFrameClippingFrame', 'ScollingFrame', 'OffsetUndoFrame'}, true)
       if PlayersStuff and typeof(PlayersStuff) == 'Instance' and PlayersStuff:IsA('Frame') then
