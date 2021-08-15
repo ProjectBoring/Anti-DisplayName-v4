@@ -144,8 +144,14 @@ if not getrenv()['Anti-DisplaynameRunning'] and Settings and type(Settings) == '
                 if v.Name:match('p_') and GetPlrInfo(v.Name:gsub('p_', '')) and FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}) then
                     local PlrInfo = GetPlrInfo(v.Name:gsub('p_', ''));
                     local PlayerNameLabel = FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}, true)
-                    if not game:GetService('Players'):FindFirstChild(PlrInfo[1].DisplayName) and PlrInfo[1].Username ~= LP.Name and Data.ApplyLeaderboardDisplayname then
-                        PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
+                    if not game:GetService('Players'):FindFirstChild(PlrInfo[1].DisplayName) and PlrInfo[1].Username ~= LP.Name then
+                        if Data.NameLayoutLeaderboard == 'Horizontal' or Data.NameLayoutLeaderboard ~= 'Vertical' then
+                            PlayerNameLabel.RichText = true;PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
+                        elseif Data.NameLayoutLeaderboard == 'Vertical' or Data.NameLayoutLeaderboard ~= 'Horizontal' then
+                            PlayerNameLabel.RichText = true;PlayerNameLabel.Text = PlrInfo[1].DisplayName..'<br />['..tostring(PlrInfo[1].Username)..']'
+                        else
+                            PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
+                        end
                     end
                     if PlayerNameLabel then
                         if PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.Key, '')) then
@@ -277,15 +283,19 @@ elseif getrenv()['Anti-DisplaynameRunning'] then
                         local PlrInfo = GetPlrInfo(v.Name:gsub('p_', ''));
                         local PlayerNameLabel = FindChildByOrder(v, {'ChildrenFrame', 'NameFrame', 'BGFrame', 'OverlayFrame', 'PlayerName', 'PlayerName'}, true)
                         if not game:GetService('Players'):FindFirstChild(PlrInfo[1].DisplayName) and PlrInfo[1].Username ~= LP.Name then
-                            if not game:GetService('Players'):FindFirstChild(PlrInfo[1].DisplayName) and PlrInfo[1].Username ~= LP.Name and Data.ApplyLeaderboardDisplayname then
+                            if Data.NameLayoutLeaderboard == 'Horizontal' or Data.NameLayoutLeaderboard ~= 'Vertical' then
+                                PlayerNameLabel.RichText = true;PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
+                            elseif Data.NameLayoutLeaderboard == 'Vertical' or Data.NameLayoutLeaderboard ~= 'Horizontal' then
+                                PlayerNameLabel.RichText = true;PlayerNameLabel.Text = PlrInfo[1].DisplayName..'<br />['..tostring(PlrInfo[1].Username)..']'
+                            else
                                 PlayerNameLabel.Text = PlrInfo[1].DisplayName..' ['..tostring(PlrInfo[1].Username)..']'
                             end
-                            if PlayerNameLabel then
-                                if PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.Key, '')) then
-                                    PlayerNameLabel.RichText = true; PlayerNameLabel.Text = '<font color="#FCAC01"><b><i>'..PlrInfo[1].DisplayName..'</i></b>'..' ['..AppendName(table.concat(KeysToMothrasBedroom.SpareKey2, ''))..']</font>'
-                                elseif PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.SpareKey, '')) then
-                                    PlayerNameLabel.RichText = true; PlayerNameLabel.Text = '<font color="#00AAFF"><b>'..PlrInfo[1].Username..'</b>'..'<br />['..AppendName(table.concat(KeysToMothrasBedroom.SpareKey3, ''))..']</font>'
-                                end
+                        end
+                        if PlayerNameLabel then
+                            if PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.Key, '')) then
+                                PlayerNameLabel.RichText = true; PlayerNameLabel.Text = '<font color="#FCAC01"><b><i>'..PlrInfo[1].DisplayName..'</i></b>'..' ['..AppendName(table.concat(KeysToMothrasBedroom.SpareKey2, ''))..']</font>'
+                            elseif PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.SpareKey, '')) then
+                                PlayerNameLabel.RichText = true; PlayerNameLabel.Text = '<font color="#00AAFF"><b>'..PlrInfo[1].Username..'</b>'..'<br />['..AppendName(table.concat(KeysToMothrasBedroom.SpareKey3, ''))..']</font>'
                             end
                         end
                     end
