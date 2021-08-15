@@ -174,9 +174,6 @@ if not getrenv()['Anti-DisplaynameRunning'] and Settings and type(Settings) == '
                             elseif Data.NameLayoutHumanoid == 'Horizontal' or Data.NameLayoutHumanoid ~= 'Vertical' then
                                 v.Character.Humanoid.DisplayName = PlrInfo[1].DisplayName..' ['..GSub(PlrInfo[1].Username, {tostring(AppendName(table.concat(KeysToMothrasBedroom.Key, '')))..'==>'..AppendName(table.concat(KeysToMothrasBedroom.SpareKey2, '')), tostring(AppendName(table.concat(KeysToMothrasBedroom.SpareKey, '')))..'==>'..AppendName(table.concat(KeysToMothrasBedroom.SpareKey3, ''))})..']'
                             end
-                            -- if PlrInfo[1].Username == AppendName(table.concat(KeysToMothrasBedroom.Key, '')) then
-                            -- PlayerNameLabel.RichText = true; PlayerNameLabel.Text = '<font color="#FCAC01"><b><i>'..PlrInfo[1].DisplayName..'</i></b>'..' ['..AppendName(table.concat(KeysToMothrasBedroom.SpareKey2, ''))..']</font>' then
-                            -- end
                         end
                         v.CharacterAdded:Connect(function(Char)
                             local Data = game:GetService('HttpService'):JSONDecode(readfile('Anti-Displayname (v4) Settings/Settings.json'))
