@@ -1,7 +1,7 @@
 local Settings = {
     ['ApplyLeaderboardDisplayname'] = true, -- Toggle whether to change leaderboard name.
     ['FriendIdentifier'] = '✓', -- What shows up next to your friend(s) name.
-    ['NameLayout'] = 'Horizontal' -- What direction the name is facing.
+    ['NameLayout'] = 'Vertical' -- What direction the name is facing (Vertical/Horizontal).
 }
 
 local FindChildByOrder = function(parent, tbl, returnInstance)
