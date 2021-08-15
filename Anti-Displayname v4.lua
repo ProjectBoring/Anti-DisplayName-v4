@@ -1,15 +1,5 @@
 print('testing anti-displayname settings update')
 
-local Settings = {
-   ['ApplyLeaderboardDisplayname'] = true, -- Toggle whether to change leaderboard name.
-   ['FriendIdentifier'] = '✓', -- What shows up next to your friend(s) name.
-   ['NameLayoutHumanoid'] = 'Vertical', -- What direction the player's character name is facing; (Vertical/Horizontal).
-   ['NameLayoutLeaderboard'] = 'Vertical' -- What direction the name is facing on leaderboard; (Vertical/Horizontal).
-}
-getrenv()['Anti-DisplayNameSettings'] = Settings
-
-loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/ProjectBoring/Anti-DisplayName-v4/main/Anti-Displayname%20v4.lua'--[[Page: https://github.com/ProjectBoring/Anti-Di...e%20v4.lua]]))()
-
 local FindChildByOrder = function(parent, tbl, returnInstance)
   if parent and tbl and typeof(parent) == 'Instance' and type(tbl) == 'table' and #tbl > 0 then
       local Current = parent;
